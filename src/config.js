@@ -3,11 +3,11 @@ export const TOKEN_SECRET = "some secret key";
 export const TOKEN = "token";
 export const API_PREFIX = "/api";
 export const MONGO_URL = "mongodb+srv://andresvillanuevatabares:2U0SJr996vlRq91P@crud-auth-v2.civwwxj.mongodb.net/?retryWrites=true&w=majority";
-export const CLIENT_URL = "https://crud-auth-v3.netlify.app";
+/* export const CLIENT_URL = "https://crud-auth-v3.netlify.app"; */
+export const CLIENT_URL = "http://localhost:5173";
 export const CLOUDINARY_NAME = 'dbrusmvop';
 export const CLOUDINARY_API_KEY = '829735912485681';
 export const CLOUDINARY_API_SECRET = 'e22RJZTEQFVHO7ZFL-5iJkWp50A';
-/* export const CLIENT_URL = "http://localhost:5173"; */
 export const MONGOOSE_SCHEMA = {
   USER: "User",
   PRODUCT: "Product",

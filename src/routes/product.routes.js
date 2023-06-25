@@ -8,8 +8,8 @@ import {
   getProducts,
   updateProduct,
 } from "../controllers/product.controller.js";
-import { validateSchema } from "../middlewares/validator.middleware.js";
-import { createProductSchema } from "../schemas/product.schema.js";
+/* import { validateSchema } from "../middlewares/validator.middleware.js";
+import { createProductSchema } from "../schemas/product.schema.js"; */
 import fileUpload from "express-fileupload";
 
 const router = Router();
@@ -19,7 +19,7 @@ router.get(ROUTES.PRODUCTBYID, authRequired, getProduct);
 router.post(
   ROUTES.PRODUCT,
   authRequired,
-  validateSchema(createProductSchema),
+  /* validateSchema(createProductSchema), */
   fileUpload({
     useTempFiles: true,
     tempFileDir: "./uploads",

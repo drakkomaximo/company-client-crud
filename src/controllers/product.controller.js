@@ -1,4 +1,4 @@
-import { deleteImage, uploadImage } from "../cloudinary.js";
+import { deleteImage, uploadImage } from "../libs/cloudinary.js";
 import { DICCIONARY, STATUS_CODES } from "../config.js";
 import Product from "../models/product.model.js";
 import fs from "fs-extra";
@@ -32,23 +32,26 @@ export const getProduct = async (req, res) => {
 export const createProduct = async (req, res) => {
   try {
     const { name, quantity, price, description, companyId } = req.body;
+
+    let image
+
+    if (req.files.image) {
+      const result = await uploadImage(req.files.image.tempFilePath);
+      await fs.remove(req.files.image.tempFilePath);
+      image = {
+        public_id: result.public_id,
+        secure_url: result.secure_url,
+      };
+    }
+
     const newProduct = new Product({
       name,
       quantity,
       price,
       description,
       companyId,
+      image
     });
-
-    if (req.files.image) {
-      const result = await uploadImage(req.files.image.temFilePath);
-      productModel.image = {
-        public_id: result.public_id,
-        secure_url: result.secure_url,
-      };
-
-      await fs.unlink(req.files.image.temFilePath);
-    }
     const savedProduct = await newProduct.save();
     res.json(savedProduct);
   } catch (error) {
